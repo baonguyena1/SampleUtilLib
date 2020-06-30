@@ -1,7 +1,5 @@
 #!/bin/sh
 set -e
-underline=$(tput smul)
-nounderline=$(tput rmul)
 
 WORKSPACE="$( cd "$(dirname ${BASH_SOURCE[0]})" >/dev/null 2>& 1 && pwd )/"
 
@@ -21,21 +19,22 @@ function checkout_source() {
 
 function usage() {
     cat <<EOF
-$(underline)Usage: $0 options
+Usage: $0 options
 
-$(underline)options:
+options:
     -v  SDK version (require).
+
 EOF
 }
 
 function check_commands() {
-    while getopts v: option
-    do
+    while getopts "v:" option; do
     case "$option"
     in
     v) SDK_VERSION=$(OPTARG);;
     esac
     done
+    
     if [ "${SDK_VERSION}" == "" ]; then
         usage
         exit 1
