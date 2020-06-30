@@ -16,3 +16,4 @@ function checkout_source() {
     git pull
 }
 
+checkout_source
