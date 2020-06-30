@@ -36,7 +36,7 @@ function check_commands() {
     v) SDK_VERSION=$(OPTARG);;
     esac
     done
-    if [ $SDK_VERSION == "" ]; then
+    if [ "${SDK_VERSION}" == "" ]; then
         usage
         exit 1
     fi
