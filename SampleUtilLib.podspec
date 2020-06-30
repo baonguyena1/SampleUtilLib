@@ -95,7 +95,7 @@ Pod::Spec.new do |spec|
   spec.source_files  = "SampleUtilLib", "SampleUtilLib/**/*.{h,m,swift}"
   spec.exclude_files = "Classes/Exclude"
 
-  # spec.public_header_files = "Classes/**/*.h"
+  spec.public_header_files = "SampleUtilLib/**/*.h"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -120,6 +120,7 @@ Pod::Spec.new do |spec|
 
   # spec.framework  = "SomeFramework"
   # spec.frameworks = "SomeFramework", "AnotherFramework"
+  spec.ios.framework = "UIKit"
 
   # spec.library   = "iconv"
   # spec.libraries = "iconv", "xml2"

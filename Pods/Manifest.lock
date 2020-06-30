@@ -1,0 +1,16 @@
+PODS:
+  - SampleUtilLib (0.0.1)
+
+DEPENDENCIES:
+  - SampleUtilLib
+
+SPEC REPOS:
+  https://github.com/baonguyena1/SampleUtilLib.git:
+    - SampleUtilLib
+
+SPEC CHECKSUMS:
+  SampleUtilLib: ccbe22de50978a8205c96755a7d872ba35d08d8b
+
+PODFILE CHECKSUM: 9d8a2084562890a41d5b331f4d273f159443cd25
+
+COCOAPODS: 1.9.3
