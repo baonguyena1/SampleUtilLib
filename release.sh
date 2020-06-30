@@ -89,6 +89,12 @@ function build_sdk() {
     lipo -create -output "${DERIVED_DATA_DIR}/build/Products/Release-iphoneos/${SDK_NAME}.framework.dSYM/Contents/Resources/DWARF/${SDK_NAME}" \
         "${DERIVED_DATA_DIR}/build/Products/Release-iphoneos/${SDK_NAME}.framework.dSYM/Contents/Resources/DWARF/${SDK_NAME}" \
         "${DERIVED_DATA_DIR}/build/Products/Release-iphonesimulator/${SDK_NAME}.framework.dSYM/Contents/Resources/DWARF/${SDK_NAME}"
+
+    # Create the modulemap file
+    cd "${WORKSPACE}/${BUILD_FOLDER}"
+
+    echo "${PREFIX}zip framework"
+    zip -r "${SDK_NAME}.zip" ${SDK_NAME}.framework ${SDK_NAME}.framework.dSYM > /dev/null 2>&1
 }   
 
 function usage() {
