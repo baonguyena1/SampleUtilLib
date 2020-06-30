@@ -16,16 +16,18 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "SampleUtilLib"
-  spec.version      = "0.0.1"
+  spec.version      = "0.0.2"
   spec.summary      = "SampleUtilLib."
+  spec.requires_arc = true
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  # spec.description  = <<-DESC
-                  #  DESC
+  spec.description  = <<-DESC
+                    SampleUtilLib is build the util for the UIView
+                   DESC
 
   spec.homepage     = "https://github.com/baonguyena1/SampleUtilLib"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
