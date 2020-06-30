@@ -10,6 +10,12 @@ import XCTest
 @testable import SampleUtilLib
 
 class SampleUtilLibTests: XCTestCase {
+    
+    var view: UIView!
+    
+    override func setUp() {
+        view = UIView()
+    }
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -18,10 +24,20 @@ class SampleUtilLibTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testCornerRadius() {
+        view.cornerRadius = 10
+        XCTAssertEqual(view.cornerRadius, 10)
+    }
+    
+    func testBorderWidth() {
+        view.borderWidth = 10
+        XCTAssertEqual(view.borderWidth, 10)
+    }
+    
+    func testBorderColor() {
+        view.borderColor = .red
+        XCTAssertEqual(view.borderColor, UIColor.red)
     }
 
     func testPerformanceExample() throws {

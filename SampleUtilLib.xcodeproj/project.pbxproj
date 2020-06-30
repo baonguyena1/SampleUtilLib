@@ -17,6 +17,7 @@
 		227D060A24AAD6200016B0B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 227D060924AAD6200016B0B6 /* Assets.xcassets */; };
 		227D060D24AAD6200016B0B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227D060B24AAD6200016B0B6 /* LaunchScreen.storyboard */; };
 		227D061824AAD6200016B0B6 /* SampleUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227D061724AAD6200016B0B6 /* SampleUtilTests.swift */; };
+		227D062124AAD76A0016B0B6 /* UIView+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227D062024AAD76A0016B0B6 /* UIView+Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		227D061324AAD6200016B0B6 /* SampleUtilTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleUtilTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		227D061724AAD6200016B0B6 /* SampleUtilTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleUtilTests.swift; sourceTree = "<group>"; };
 		227D061924AAD6200016B0B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		227D062024AAD76A0016B0B6 /* UIView+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helper.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			children = (
 				227D05E324AAD5E10016B0B6 /* SampleUtilLib.h */,
 				227D05E424AAD5E10016B0B6 /* Info.plist */,
+				227D062024AAD76A0016B0B6 /* UIView+Helper.swift */,
 			);
 			path = SampleUtilLib;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				TargetAttributes = {
 					227D05DF24AAD5E10016B0B6 = {
 						CreatedOnToolsVersion = 11.5;
+						LastSwiftMigration = 1150;
 					};
 					227D05E824AAD5E10016B0B6 = {
 						CreatedOnToolsVersion = 11.5;
@@ -322,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				227D062124AAD76A0016B0B6 /* UIView+Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +514,7 @@
 		227D05F524AAD5E10016B0B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4X4ZDEX56P;
@@ -526,6 +532,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.baon.SampleUtilLib;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -534,6 +541,7 @@
 		227D05F624AAD5E10016B0B6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4X4ZDEX56P;
@@ -559,6 +567,7 @@
 		227D05F824AAD5E10016B0B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4X4ZDEX56P;
 				INFOPLIST_FILE = SampleUtilLibTests/Info.plist;
@@ -577,6 +586,7 @@
 		227D05F924AAD5E10016B0B6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4X4ZDEX56P;
 				INFOPLIST_FILE = SampleUtilLibTests/Info.plist;
