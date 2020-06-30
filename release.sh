@@ -67,7 +67,28 @@ function build_sdk() {
     # 6
     # Copy the device version of framework to Build folder.
     cp -r "${DERIVED_DATA_DIR}/build/Products/Release-iphoneos/${SDK_NAME}.framework" "${WORKSPACE}/${BUILD_FOLDER}/${SDK_NAME}.framework"
+    
+    # 7
+    # Replace the framework executable within the framework with
+    # a new version created by merging the device and simulator
+    # frameworks' executables with lipo.
+    lipo -create -output "${WORKSPACE}/${BUILD_FOLDER}/${SDK_NAME}.framework/${SDK_NAME}" \
+        "${DERIVED_DATA_DIR}/build/Products/Release-iphoneos/${SDK_NAME}.framework/${SDK_NAME}" \
+        "${DERIVED_DATA_DIR}/build/Products/Release-iphonesimulator/${SDK_NAME}.framework/${SDK_NAME}"
+
+    # 8
+    # Copy the Swift module mappings for the simulator into the 
+    # framework.  The device mappings already exist from step 6.
+    cp -r "${DERIVED_DATA_DIR}/build/Products/Release-iphonesimulator/${SDK_NAME}.framework/Modules/${SDK_NAME}.swiftmodule/" "${WORKSPACE}/${BUILD_FOLDER}/${SDK_NAME}.framework/Modules/${SDK_NAME}.swiftmodule"
+
+    #dSYM
+    # 9
+    # Copy the device version of dSYM to Build folder.
     cp -r "${DERIVED_DATA_DIR}/build/Products/Release-iphoneos/${SDK_NAME}.framework.dSYM" "${WORKSPACE}/${BUILD_FOLDER}/${SDK_NAME}.framework.dSYM"
+
+    lipo -create -output "${DERIVED_DATA_DIR}/build/Products/Release-iphoneos/${SDK_NAME}.framework.dSYM/Contents/Resources/DWARF/${SDK_NAME}" \
+        "${DERIVED_DATA_DIR}/build/Products/Release-iphoneos/${SDK_NAME}.framework.dSYM/Contents/Resources/DWARF/${SDK_NAME}" \
+        "${DERIVED_DATA_DIR}/build/Products/Release-iphonesimulator/${SDK_NAME}.framework.dSYM/Contents/Resources/DWARF/${SDK_NAME}"
 }   
 
 function usage() {
