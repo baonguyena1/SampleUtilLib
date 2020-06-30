@@ -1,21 +1,74 @@
 #!/bin/sh
+
+# 1
+# Set bash script to exit immediately if any commands fail.
 set -e
 
-WORKSPACE="$( cd "$(dirname ${BASH_SOURCE[0]})" >/dev/null 2>& 1 && pwd )/"
-
+# 2
+# Setup some constants for use later on.
+PREFIX="➡️    "
+WORKSPACE="$( cd "$(dirname ${BASH_SOURCE[0]})" >/dev/null 2>& 1 && pwd )"
 SDK_VERSION=""
 SDK_NAME="SampleUtilLib"
 BUILD_CONFIGURATION="Release"
 SOURCE_BRANCH="master"
 
 function checkout_source() {
-    echo "➡️ Checkout Source"
+    echo "${PREFIX}Checkout Source"
     cd $WORKSPACE
     git reset --hard
     git checkout $SOURCE_BRANCH
     git fetch
     git pull
 }
+
+function build_sdk() {
+    echo "${PREFIX}INFO: Build: ${SDK_NAME}, Branch: ${SOURCE_BRANCH}, Version: ${SDK_VERSION}"
+    cd $WORKSPACE
+
+    # 3
+    # If remnants from a previous build exist, delete them.
+    BUILD_DIR="BUILD_COMMAND_LINE"
+    DERIVED_DATA_DIR="${BUILD_DIR}/DerivedData"
+    if [ -d "${BUILD_DIR}" ]; then
+        echo "${PREFIX}Remove build command line folder"
+        rm -rf "${BUILD_DIR}"
+    fi
+    mkdir -p $DERIVED_DATA_DIR
+
+    # 4
+    # Build the framework for device and for simulator (using
+    # all needed architectures).
+    xcodebuild -target "${SDK_NAME}" \
+                -scheme "${SDK_NAME}" \
+                -configuration "${BUILD_CONFIGURATION}" \
+                -arch arm64 \
+                only_active_arch=no defines_module=yes \
+                -sdk "iphoneos" \
+                -derivedDataPath ${DERIVED_DATA_DIR} \
+                >/dev/null 2>&1
+    xcodebuild -target "${SDK_NAME}" \
+                -scheme "${SDK_NAME}" \
+                -configuration "${BUILD_CONFIGURATION}" \
+                only_active_arch=no defines_module=yes \
+                -sdk "iphonesimulator" \
+                -derivedDataPath ${DERIVED_DATA_DIR} \
+                >/dev/null 2>&1
+
+    BUILD_FOLDER="build"
+    # 5
+    # Remove .framework file if exists on Build folder from previous run.  
+    if [ -d "${BUILD_FOLDER}" ]; then
+        echo "${PREFIX}Remove build folder"
+        rm -rf "${BUILD_FOLDER}"
+    fi  
+    mkdir -p $BUILD_FOLDER
+
+    # 6
+    # Copy the device version of framework to Build folder.
+    cp -r "${DERIVED_DATA_DIR}/build/Products/Release-iphoneos/${SDK_NAME}.framework" "${WORKSPACE}/${BUILD_FOLDER}/${SDK_NAME}.framework"
+    cp -r "${DERIVED_DATA_DIR}/build/Products/Release-iphoneos/${SDK_NAME}.framework.dSYM" "${WORKSPACE}/${BUILD_FOLDER}/${SDK_NAME}.framework.dSYM"
+}   
 
 function usage() {
     cat <<EOF
@@ -27,19 +80,18 @@ options:
 EOF
 }
 
-function check_commands() {
-    while getopts "v:" option; do
-    case "$option"
-    in
-    v) SDK_VERSION=$(OPTARG);;
+# Get version
+while getopts v: arg; do
+    case $arg in
+    v)  SDK_VERSION=$OPTARG ;;
     esac
-    done
-    
-    if [ "${SDK_VERSION}" == "" ]; then
-        usage
-        exit 1
-    fi
-}
+done
 
-check_commands
-checkout_source
+if [ "${SDK_VERSION}" == "" ]; then
+    usage
+    exit 1
+fi
+
+# checkout_source
+
+build_sdk

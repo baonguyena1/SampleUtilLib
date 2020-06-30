@@ -1,0 +1,5 @@
+version: "Apple Swift version 5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)"
+options: "52bd95f631255c612466c98976b2240b"
+build_time: [1593502246, 540406000]
+inputs:
+  "/Users/ermacbook76/Desktop/SampleUtilLib/SampleUtilLib/UIView+Helper.swift": [9223372036, 854775807]

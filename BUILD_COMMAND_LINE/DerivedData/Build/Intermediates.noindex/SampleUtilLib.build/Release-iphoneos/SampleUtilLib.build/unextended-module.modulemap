@@ -1,0 +1,10 @@
+framework module SampleUtilLib {
+  umbrella header "SampleUtilLib.h"
+
+  export *
+  module * { export * }
+}
+
+module SampleUtilLib.__Swift {
+    exclude header "SampleUtilLib-Swift.h"
+}

@@ -1,0 +1,13 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/ermacbook76/Desktop/SampleUtilLib/BUILD_COMMAND_LINE/DerivedData/Build/Products/Release-iphonesimulator/SampleUtilLib.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/ermacbook76/Desktop/SampleUtilLib/BUILD_COMMAND_LINE/DerivedData/Build/Intermediates.noindex/SampleUtilLib.build/Release-iphonesimulator/SampleUtilLib.build/unextended-module.modulemap",
+    }]
+  }]
+}
